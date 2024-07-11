@@ -10,14 +10,14 @@ CHR_LABELS = [str(i) for i in range(1, 23)] + ['X', 'Y', 'unplaced']
 
 def parse_genome_data(input_file):
     chromosomes = {label: "" for label in CHR_LABELS}
-    print("1")
+    #print("1")
     with input_file.open("r") as rf:
         current_chromosome: Optional[str] = None
-        print("2")
+        #print("2")
         line: str = rf.readline()
         while line:
             line = line.strip()  # remove the \n at the end of a line
-            print("22")
+            #print("22")
             if line.startswith(">"):
                 res: Optional[re.Match] = CHR_NUM_PATTERN.search(line)
                 current_chromosome = "unplaced" if not res else res.group(1)
@@ -62,12 +62,12 @@ def main():
     chromosomes = parse_genome_data(INPUT_FILE)
     
     for chromosome_id, sequence in chromosomes.items():
-        print("10")
+        #print("10")
         if sequence:  # Only process if there is a sequence for this chromosome
             rows = process_chromosome(sequence, chromosome_id)
-            print("11")
+            #print("11")
             write_to_csv(chromosome_id, rows)
-            print("12")
+            #print("12")
 
 if __name__ == '__main__':
     main()
